@@ -1,0 +1,245 @@
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Propose Day, Priyanshu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 50%, #ffe4e1 100%); /* Soft pink gradient */
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Subtle glow */
+        }
+        p, .shayari, .confession {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+        .fade-in-delay {
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out 1.5s forwards;
+        }
+        .fade-in-slow {
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .button {
+            background: linear-gradient(45deg, #ffb6c1, #ff69b4);
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
+        .button:hover, .button:active {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+        .proposal-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        .proposal-buttons .button {
+            flex: 1;
+            margin: 0 10px;
+        }
+        .full-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 50%, #ffe4e1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 1s ease;
+            z-index: 10;
+        }
+        .full-screen.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .full-screen p {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .highlight {
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p, .shayari, .confession {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Opening Scene -->
+        <div id="opening" class="scene">
+            <h1 class="fade-in">Priyanshu…</h1>
+            <p class="fade-in-delay">Aaj ek baat dil se poochni hai 💗</p>
+            <button class="button" id="continue-btn">Tap to continue</button>
+        </div>
+
+        <!-- Hero Section -->
+        <div id="hero" class="scene" style="display: none;">
+            <h1>Happy Propose Day, Priyanshu 💍</h1>
+            <p>Kuch rishte sawalon se shuru hote hain,<br>par jawaab zindagi badal dete hain.</p>
+        </div>
+
+        <!-- Shayari Section -->
+        <div id="shayari" class="scene" style="display: none;">
+            <div class="shayari fade-in-slow">
+                Tum achanak nahi aaye meri zindagi me,<br>
+                tum dheere-dheere meri aadat ban gaye.<br><br>
+                Aur aaj,<br>
+                main tumhe sirf chaahna nahi —<br>
+                chunnna chahti hoon.
+            </div>
+        </div>
+
+        <!-- Confession Section -->
+        <div id="confession" class="scene" style="display: none;">
+            <h2>Sach kehna hai…</h2>
+            <p class="confession">
+                Main future plan karte waqt<br>
+                automatically tumhara naam sochti hoon.<br><br>
+                Shayad isi ko pyaar kehte hain.
+            </p>
+        </div>
+
+        <!-- Proposal Moment -->
+        <div id="proposal" class="scene" style="display: none;">
+            <h1 class="highlight">Priyanshu, will you be mine? 💗</h1>
+            <div class="proposal-buttons">
+                <button class="button" id="yes-btn">Yes 💕</button>
+                <button class="button" id="no-btn">No</button>
+            </div>
+        </div>
+
+        <!-- Final Shayari -->
+        <div id="final-shayari" class="scene" style="display: none;">
+            <div class="shayari fade-in-slow">
+                Jawab jo bhi ho,<br>
+                ehsaas saccha rehna chahiye.<br><br>
+                Aur aaj,<br>
+                wo ehsaas tum tak pahunch gaya.
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-screen Message -->
+    <div id="full-screen" class="full-screen">
+        <p id="response-message"></p>
+    </div>
+
+    <script>
+        // Easy to edit: WhatsApp number (replace with actual number, e.g., '1234567890')
+        const whatsappNumber = '1234567890'; // Change this to the recipient's WhatsApp number
+
+        // Lightweight JavaScript for scene transitions and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const scenes = ['opening', 'hero', 'shayari', 'confession', 'proposal', 'final-shayari'];
+            let currentScene = 0;
+
+            // Function to show next scene
+            function showNextScene() {
+                if (currentScene < scenes.length - 1) {
+                    document.getElementById(scenes[currentScene]).style.display = 'none';
+                    currentScene++;
+                    document.getElementById(scenes[currentScene]).style.display = 'block';
+                    // Auto-scroll to top for mobile
+                    window.scrollTo(0, 0);
+                }
+            }
+
+            // Continue button in opening scene
+            document.getElementById('continue-btn').addEventListener('click', showNextScene);
+
+            // Proposal buttons
+            document.getElementById('yes-btn').addEventListener('click', function() {
+                localStorage.setItem('proposalChoice', 'YES');
+                document.getElementById('response-message').textContent = 'You just made me the happiest 💗';
+                document.getElementById('full-screen').classList.add('show');
+                setTimeout(function() {
+                    document.getElementById('full-screen').classList.remove('show');
+                    // Redirect to WhatsApp
+                    const message = encodeURIComponent('I said YES 💗 – Priyanshu');
+                    window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+                }, 2000);
+            });
+
+            document.getElementById('no-btn').addEventListener('click', function() {
+                localStorage.setItem('proposalChoice', 'NO');
+                document.getElementById('response-message').textContent = 'Thank you for being honest 💗';
+                document.getElementById('full-screen').classList.add('show');
+                setTimeout(function() {
+                    document.getElementById('full-screen').classList.remove('show');
+                    // Redirect to WhatsApp
+                    const message = encodeURIComponent('I chose NO – Priyanshu');
+                    window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+                }, 2000);
+            });
+
+            // After WhatsApp redirect, show final shayari (assuming user comes back or in a new session, but for simplicity, we can auto-advance after proposal)
+            // Note: Since redirect happens, final shayari might not show immediately. For demo, we can add a check.
+            // In a real scenario, you might need to handle post-redirect, but keeping it simple.
+        });
+    </script>
+</body>
+</html>
+```
